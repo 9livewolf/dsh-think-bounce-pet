@@ -1,6 +1,6 @@
 {
   "name": "dsh-think-bounce-pet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Think-step bounce pet for the DeepSeek Harness Web UI: a ball launches in from a random screen edge whenever a reasoning step starts, bounces around with energy loss, can be poked or flung with the mouse, and shrinks away when the think step ends",
   "type": "module",
   "main": "lib/index.js",

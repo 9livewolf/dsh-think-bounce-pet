@@ -42,6 +42,22 @@ localStorage 的 `dsh-think-bounce-pet.settings`；v0.1 的旧开关键会自动
 客户端半边改动只需浏览器 F5；本插件无宿主侧逻辑，装好后重启一次 `dsh web`
 即可长期生效。
 
+## macOS 窗口拖拽
+
+macOS 桌面外壳（Electron）按文档顺序几何合成 `-webkit-app-region` 拖拽矩形，
+而 DSH 的 `base.css` 会把 `body` 下 `#root` 以外的节点一律声明成 `no-drag`：
+覆盖全窗口的 body 级被动层又是文档里最后一个盒子，就会把整个顶栏拖拽面“减”掉，
+表现为装完插件后窗口拖不动（0.1.1 起已修好）。
+
+现在的做法（插件自包含，不依赖宿主版本）：
+
+- 漂浮层用 `display:contents`，不生成盒子，不参与 app-region 合成；
+- 球改为 `position:fixed`，直接相对视口定位，坐标与原来的全屏层一致；
+- 球只有在与 `[data-window-drag]` 拖拽行几何重叠时才临时声明 `no-drag`
+  （球上的点击/拖动仍归球），离开立即撤销；
+- 标记变化、或标记中的球在移动时，脉冲 `body[data-window-drag-recall]`，
+  让 Electron 重新收集拖拽矩形，避免残留旧位置的空洞。
+
 ## 结构
 
 标准 DSH 双面插件：宿主半边 `lib/index.js` 为空壳（纯客户端 UI 插件）；
