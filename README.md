@@ -3,6 +3,7 @@
 [📺 点击观看效果演示](https://www.bilibili.com/video/BV14d886GEx1)
 
 DeepSeek Harness Web UI 的「思考弹球宠物」插件：让两只大肥鱼在界面里弹来弹去，无实意。
+<img src="assets/preview.gif" width="720" alt="思考弹球宠物：球持续弹跳，可拍走、拖拽扔出">
 
 ## 功能
 
